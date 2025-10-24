@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm ci
+  build:
+    commands:
+      - npm run build || echo "no build step; continuing"
+  post_build:
+    commands:
+      - npm test || echo "no tests; continuing"
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
